@@ -157,7 +157,7 @@ function App() {
 
                 const response =
                   await fetch(
-                    "http://127.0.0.1:8000/detect_frame",
+                    "https://smart-traffic-backend-6df6.onrender.com/detect_frame",
                     {
                       method:
                         "POST",
@@ -274,7 +274,7 @@ function App() {
 
         const response =
           await fetch(
-            "http://127.0.0.1:8000/upload",
+            "https://smart-traffic-backend-6df6.onrender.com/upload",
             {
               method: "POST",
               body: formData
@@ -321,7 +321,7 @@ function App() {
 
         const response =
           await fetch(
-            `http://127.0.0.1:8000/analyze?filename=${file.name}`,
+            `https://smart-traffic-backend-6df6.onrender.com/analyze?filename=${file.name}`,
             {
               method: "POST"
             }
@@ -335,7 +335,7 @@ function App() {
         if (data.output) {
 
           setProcessedVideo(
-            `http://127.0.0.1:8000/${data.output}?t=${Date.now()}`
+            `https://smart-traffic-backend-6df6.onrender.com/${data.output}?t=${Date.now()}`
           );
 
         }
