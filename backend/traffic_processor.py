@@ -322,27 +322,18 @@ def process_video(video_path):
 
     # FINAL BROWSER VIDEO
 
-    h264_output = (
-        "outputs/processed_traffic_h264.mp4"
-    )
+    # h264_output = (
+    #     "outputs/processed_traffic_h264.mp4"
+    # )
 
-    subprocess.run(
-        [
-            "ffmpeg",
-            "-y",
-            "-i",
-            output_path,
-            "-c:v",
-            "libx264",
-            "-preset",
-            "fast",
-            "-crf",
-            "23",
-            h264_output
-        ],
-        check=True
-    )
+    # FINAL BROWSER VIDEO
 
+    h264_output = output_path
+
+    print(
+        "Generated:",
+        h264_output
+    )
     print(
         "Generated:",
         h264_output
