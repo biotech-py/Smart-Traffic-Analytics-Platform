@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 import base64
 
-model = YOLO("yolov8n.pt")
-
+# model = YOLO("yolov8n.pt")
+model = None
 vehicle_classes = [
     "car",
     "bus",
@@ -13,6 +13,10 @@ vehicle_classes = [
 ]
 
 def detect_frame(image_bytes):
+    global model
+
+    if model is None:
+        model = YOLO("yolov8n.pt")
 
     np_arr = np.frombuffer(
         image_bytes,
