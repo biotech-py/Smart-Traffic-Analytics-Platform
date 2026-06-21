@@ -237,7 +237,7 @@ function App() {
           );
 
         },
-        300
+        2000
       );
 
     return () =>
