@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
+
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse
 
@@ -11,6 +12,13 @@ import shutil
 import os
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # CORS
 app.add_middleware(
