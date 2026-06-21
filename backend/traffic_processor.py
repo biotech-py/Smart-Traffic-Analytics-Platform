@@ -28,18 +28,18 @@ def process_video(video_path):
         exist_ok=True
     )
 
-    # TEMP AVI FILE
-    output_path = (
+    # AVI OUTPUT FILE
+
+    temp_output = (
         "outputs/temp_output.avi"
     )
 
-    # Much more stable on Windows
     fourcc = cv2.VideoWriter_fourcc(
         *"XVID"
     )
 
     out = cv2.VideoWriter(
-        output_path,
+        temp_output,
         fourcc,
         fps,
         (width, height)
@@ -300,6 +300,29 @@ def process_video(video_path):
     cap.release()
     out.release()
 
+    # CONVERT AVI -> H264 MP4
+
+    h264_output = (
+        "outputs/processed_traffic_h264.mp4"
+    )
+
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-y",
+            "-i",
+            temp_output,
+            "-c:v",
+            "libx264",
+            "-pix_fmt",
+            "yuv420p",
+            "-movflags",
+            "+faststart",
+            h264_output
+        ],
+        check=True
+    )
+
     unique_vehicle_count = (
 
         len(car_ids)
@@ -320,20 +343,6 @@ def process_video(video_path):
         / duration_minutes
     )
 
-    # FINAL BROWSER VIDEO
-
-    # h264_output = (
-    #     "outputs/processed_traffic_h264.mp4"
-    # )
-
-    # FINAL BROWSER VIDEO
-
-    h264_output = output_path
-
-    print(
-        "Generated:",
-        h264_output
-    )
     print(
         "Generated:",
         h264_output

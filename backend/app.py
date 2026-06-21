@@ -1,14 +1,12 @@
-from backend.frame_detector import detect_frame
-from fastapi import Request
-from fastapi.responses import StreamingResponse
-from backend.live_stream import (
-    generate_frames,
-    live_stats
-)
-from fastapi.staticfiles import StaticFiles
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
-from backend.traffic_processor import process_video
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import StreamingResponse
+
+from traffic_processor import process_video
+from frame_detector import detect_frame
+from live_stream import generate_frames, live_stats
+
 import shutil
 import os
 
@@ -107,7 +105,6 @@ def analyze_video(filename: str):
             "traffic_status": stats["traffic_status"],
             "vehicles_per_minute": stats["vehicles_per_minute"],
 
-            # NEW
             "traffic_history": stats["traffic_history"]
         }
 
@@ -117,19 +114,27 @@ def analyze_video(filename: str):
             "status": "error",
             "message": str(e)
         }
-    
+
+
+# =========================
+# LIVE CAMERA ROUTES
+# =========================
+
 @app.get("/live_feed")
 def live_feed():
 
     return StreamingResponse(
         generate_frames(),
-        media_type=
-        "multipart/x-mixed-replace; boundary=frame"
+        media_type="multipart/x-mixed-replace; boundary=frame"
     )
+
+
 @app.get("/live_stats")
 def get_live_stats():
 
     return live_stats
+
+
 @app.post("/detect_frame")
 async def detect_frame_api(
     request: Request
@@ -142,3 +147,6 @@ async def detect_frame_api(
     )
 
     return results
+
+
+print("APP FILE LOADED SUCCESSFULLY")

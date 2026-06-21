@@ -11,6 +11,8 @@ import {
 } from "recharts";
 
 import "./App.css";
+const API_URL = "http://127.0.0.1:8000";
+
 
 function App() {
 
@@ -157,7 +159,7 @@ function App() {
 
                 const response =
                   await fetch(
-                    "https://smart-traffic-backend-6df6.onrender.com/detect_frame",
+                           `${API_URL}/detect_frame`,
                     {
                       method:
                         "POST",
@@ -274,7 +276,7 @@ function App() {
 
         const response =
           await fetch(
-            "https://smart-traffic-backend-6df6.onrender.com/upload",
+                  `${API_URL}/upload`,
             {
               method: "POST",
               body: formData
@@ -321,7 +323,7 @@ function App() {
 
         const response =
           await fetch(
-            `https://smart-traffic-backend-6df6.onrender.com/analyze?filename=${file.name}`,
+                  `${API_URL}/analyze?filename=${file.name}`,
             {
               method: "POST"
             }
@@ -335,8 +337,15 @@ function App() {
 
         if (data.output) {
 
+          console.log("OUTPUT =", data.output);
+
+          console.log(
+            "VIDEO URL =",
+            `${API_URL}/${data.output}?t=${Date.now()}`
+          );
+
           setProcessedVideo(
-            `https://smart-traffic-backend-6df6.onrender.com/${data.output}?t=${Date.now()}`
+            `${API_URL}/${data.output}?t=${Date.now()}`
           );
 
         }
@@ -348,7 +357,7 @@ function App() {
         setVehiclesPerMinute(
           data.vehicles_per_minute
         );
-
+  
         setVehiclesPassed(
           (data.cars || 0) +
           (data.bikes || 0) +
@@ -563,7 +572,6 @@ function App() {
                   src={
                     processedVideo
                   }
-                  type="video/mp4"
                 />
               </video>
 
