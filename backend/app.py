@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 
 from traffic_processor import process_video
 from frame_detector import detect_frame
-from live_stream import generate_frames, live_stats
+# from live_stream import generate_frames, live_stats
 
 import shutil
 import os
@@ -128,19 +128,19 @@ def analyze_video(filename: str):
 # LIVE CAMERA ROUTES
 # =========================
 
-@app.get("/live_feed")
-def live_feed():
+# @app.get("/live_feed")
+# def live_feed():
 
-    return StreamingResponse(
-        generate_frames(),
-        media_type="multipart/x-mixed-replace; boundary=frame"
-    )
+#     return StreamingResponse(
+#         generate_frames(),
+#         media_type="multipart/x-mixed-replace; boundary=frame"
+#     )
 
 
-@app.get("/live_stats")
-def get_live_stats():
+# @app.get("/live_stats")
+# def get_live_stats():
 
-    return live_stats
+#     return live_stats
 
 
 @app.post("/detect_frame")
