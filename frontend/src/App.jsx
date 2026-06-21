@@ -328,7 +328,8 @@ function App() {
           );
 
         const data =
-          await response.json();
+        await response.json();
+        console.log("ANALYZE RESPONSE:", data);  
 
         setLoading(false);
 
