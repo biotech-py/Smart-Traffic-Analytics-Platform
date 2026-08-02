@@ -14,7 +14,7 @@ The platform allows users to upload traffic videos, automatically detect multipl
 
 ## 📸 Project Preview
 
-> *(Add screenshots here after uploading them to the repository.)*
+
 
 ```
 images/
