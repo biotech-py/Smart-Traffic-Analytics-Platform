@@ -12,17 +12,6 @@ The platform allows users to upload traffic videos, automatically detect multipl
 
 ---
 
-## 📸 Project Preview
-
-
-
-```
-images/
-│── dashboard.png
-│── upload-page.png
-│── processed-video.png
-```
-
 ---
 
 # Features
