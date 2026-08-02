@@ -23,14 +23,6 @@ images/
 │── processed-video.png
 ```
 
-Example:
-
-```markdown
-![Dashboard](images/dashboard.png)
-
-![Upload Page](images/upload-page.png)
-```
-
 ---
 
 # Features
